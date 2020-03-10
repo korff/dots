@@ -63,7 +63,10 @@ fi
 # The packages
 check_package vim
 echo
+check_package tmux
+echo
 
 # Hook up the config files
 printf "so $HOME/.setup/vim/vimrc" > ~/.vimrc
+printf "source-file $HOME/.setup/tmux/tmux.conf" > ~/.tmux.conf
 
