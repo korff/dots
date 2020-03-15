@@ -5,7 +5,66 @@
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
- 
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+" NERDTree for file overview
+Plug 'preservim/nerdtree'
+
+" Add the airline plugins
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+set t_Co=256
+
+" General Functionality {{{
+" better terminal integration
+" substitute, search, and abbreviate multiple variants of a word
+Plug 'tpope/vim-abolish'
+
+" easy commenting motions
+Plug 'tpope/vim-commentary'
+
+" mappings which are simply short normal mode aliases for commonly used ex commands
+Plug 'tpope/vim-unimpaired'
+
+" endings for html, xml, etc. - ehances surround
+Plug 'tpope/vim-ragtag'
+
+" mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
+Plug 'tpope/vim-surround'
+
+" tmux integration for vim
+Plug 'benmills/vimux'
+
+" enables repeating other supported plugins with the . command
+Plug 'tpope/vim-repeat'
+
+" .editorconfig support 
+Plug 'editorconfig/editorconfig-vim'
+
+" single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
+Plug 'AndrewRadev/splitjoin.vim'
+
+" add end, endif, etc. automatically
+Plug 'tpope/vim-endwise'
+
+" detect indent style (tabs vs. spaces) 
+Plug 'tpope/vim-sleuth'
+
+" }}}
+
+call plug#end()
+
+" Setup CtrlP plugin
+set rtp+=$HOME/.vim/bundle/ctrlp.vim
+
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
@@ -104,7 +163,10 @@ set pastetoggle=<F11>
 
 " Set directory for where to put swap files
 set dir=/tmp/
- 
+
+" Searching for files
+set path+=**
+
 "
 " Indentation options
 "

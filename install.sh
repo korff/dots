@@ -1,3 +1,10 @@
+#!/bin/bash
+
+set -e
+set -u
+
+script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 install_package() {
     echo -n "$1 is missing. Want to install? (y/n) " >&2
     stty_config_saved=$(stty -g)
@@ -37,14 +44,14 @@ install_package() {
     fi
 }
 
-    check_package() {
-        echo Checking for $1
-        if ! [ -x "$(command -v $1)" ]; then
-            install_package $1
-        else
-            echo "$1 already installed."
-        fi
-    }
+check_package() {
+    echo Checking for $1
+    if ! [ -x "$(command -v $1)" ]; then
+        install_package $1
+    else
+        echo "$1 already installed."
+    fi
+}
 
 echo Setting up terminal envirionment
 
@@ -61,12 +68,19 @@ else
 fi
 
 # The packages
+check_package ctags
+echo
 check_package vim
 echo
 check_package tmux
 echo
 
 # Hook up the config files
-printf "so $HOME/.setup/vim/vimrc" > ~/.vimrc
-printf "source-file $HOME/.setup/tmux/tmux.conf" > ~/.tmux.conf
+printf "so $script_path/vim/vimrc" > ~/.vimrc
+if [ ! -d $HOME/.vim/bundle ]
+then
+    echo Creating symbolic link: ln -s $script_path/vim/bundle ~/.vim/
+    ln -s $script_path/vim/bundle ~/.vim/
+fi
+printf "source-file $script_path/tmux/tmux.conf" > ~/.tmux.conf
 
