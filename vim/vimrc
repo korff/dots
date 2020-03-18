@@ -129,7 +129,11 @@ set nostartofline
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
 set ruler
- 
+
+" Highlight at column 132
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%133v', 100)
+
 " Always display the status line, even if only one window is displayed
 set laststatus=2
  
@@ -169,6 +173,18 @@ set dir=/tmp/
 set path+=**
 
 "
+" Spelling options
+"
+" On merkdown files
+autocmd BufRead,BufNewFile *.md setlocal spell
+
+" On git commits
+autocmd FileType gitcommit setlocal spell
+
+" Enable autocomplete spelling when spelling is enabled
+set complete+=kspell
+
+"
 " Indentation options
 "
 
@@ -177,7 +193,7 @@ set path+=**
 set shiftwidth=4
 set softtabstop=4
 set expandtab
- 
+
 "
 " Mappings
 "
@@ -189,12 +205,29 @@ map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
- 
+
+" Visual select line similar to yy, dd, and cc
 nnoremap vv 0v$
 
+" Show current folder
 nnoremap <leader>e :Ex<CR>
+" Create new tab
 nnoremap <leader>t :tabnew<CR>:Ex<CR>
+" Vertical split
 nnoremap <leader>v :vsplit<CR>
+" Horizontal split
 nnoremap <leader>s :split<CR>
+
+" Remap ; to : in normal mode
+nnoremap ; :
+
+" Moving lines up and down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 
 " EOF
