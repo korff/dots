@@ -25,6 +25,9 @@ set t_Co=256
 
 " General Functionality {{{
 " better terminal integration
+
+Plug 'tpope/vim-sensible'
+
 " substitute, search, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
 
@@ -57,6 +60,9 @@ Plug 'tpope/vim-endwise'
 
 " detect indent style (tabs vs. spaces) 
 Plug 'tpope/vim-sleuth'
+
+" Git plugin
+Plug 'tpope/vim-fugitive'
 
 " }}}
 
@@ -194,6 +200,13 @@ autocmd FileType gitcommit setlocal spell
 
 " Enable autocomplete spelling when spelling is enabled
 set complete+=kspell
+
+"
+" File syntax
+"
+
+autocmd BufRead,BufNewFile dockerfile set ft=Dockerfile
+
 
 "
 " Indentation options
