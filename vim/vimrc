@@ -132,17 +132,10 @@ set autoindent
 " coming from other editors would expect.
 set nostartofline
  
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
 " Highlight at column 132
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%133v', 100)
 
-" Always display the status line, even if only one window is displayed
-set laststatus=2
- 
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
@@ -182,6 +175,7 @@ set notimeout ttimeout ttimeoutlen=200
  
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
+set clipboard=unnamedplus
 
 " Set directory for where to put swap files
 set dir=/tmp/
