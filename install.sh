@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 set -u
@@ -46,11 +46,12 @@ install_package() {
 
 check_package() {
     echo Checking for $1
-    if ! [ -x "$(command -v $1)" ]; then
-        install_package $1
-    else
-        echo "$1 already installed."
-    fi
+    ! [ -x "$(command -v $1)" ] && install_package $1 || echo "$1 already installed."
+}
+
+abort() {
+    echo Aborting!
+    exit 0
 }
 
 echo Setting up terminal envirionment
@@ -60,12 +61,7 @@ stty_config_saved=$(stty -g)
 stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $stty_config_saved
-if echo "$answer" | grep -iq "^y" ;then
-    echo 
-else
-    echo Aborting!
-    exit 0
-fi
+echo "$answer" | grep -iq "^y" || abort
 
 # The packages
 check_package ctags

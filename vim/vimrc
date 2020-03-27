@@ -14,18 +14,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" NERDTree for file overview
-Plug 'preservim/nerdtree'
-
-" Add the airline plugins
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1
-set t_Co=256
-
-" General Functionality {{{
-" better terminal integration
-
+" The sensible settings
 Plug 'tpope/vim-sensible'
 
 " substitute, search, and abbreviate multiple variants of a word
@@ -60,11 +49,6 @@ Plug 'tpope/vim-endwise'
 
 " detect indent style (tabs vs. spaces) 
 Plug 'tpope/vim-sleuth'
-
-" Git plugin
-Plug 'tpope/vim-fugitive'
-
-" }}}
 
 call plug#end()
 
