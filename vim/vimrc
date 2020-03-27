@@ -85,7 +85,12 @@ set wildmenu
  
 " Show partial commands in the last line of the screen
 set showcmd
- 
+
+" setting search colors
+" GUI
+hi Search guibg=yellow guifg=black
+" Term
+hi Search cterm=NONE ctermbg=yellow ctermfg=black
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
