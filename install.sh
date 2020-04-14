@@ -3,7 +3,7 @@
 set -e
 set -u
 
-script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+script_path="$( cd "$( dirname "${BASH_SOURCE}" )" && pwd )"
 
 install_package() {
     echo -n "$1 is missing. Want to install? (y/n) " >&2
@@ -54,14 +54,16 @@ abort() {
     exit 0
 }
 
-echo Setting up terminal envirionment
+answer() {
+    echo "Continue? (y/n)"
+    stty_config_saved=$(stty -g)
+    stty raw -echo
+    answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
+    stty $stty_config_saved
+    echo "$answer" | grep -iq "^y" || abort
+}
 
-echo "Continue? (y/n)"
-stty_config_saved=$(stty -g)
-stty raw -echo
-answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
-stty $stty_config_saved
-echo "$answer" | grep -iq "^y" || abort
+echo Setting up terminal envirionment && answer
 
 # The packages
 check_package ctags
@@ -72,11 +74,16 @@ check_package tmux
 echo
 
 # Hook up the config files
-printf "so $script_path/vim/vimrc" > ~/.vimrc
-if [ ! -d $HOME/.vim/bundle ]
-then
-    echo Creating symbolic link: ln -s $script_path/vim/bundle ~/.vim/
-    ln -s $script_path/vim/bundle ~/.vim/
-fi
-printf "source-file $script_path/tmux/tmux.conf" > ~/.tmux.conf
+echo Update dot and config files && answer
+CONFIG_PATH=$HOME/.config
+[ ! -d $CONFIG_PATH ] && mkdir -p $CONFIG_PATH
+[ ! -d $CONFIG_PATH/vim ] \
+    && echo Creating symbolic link: ln -s $script_path/vim $CONFIG_PATH/vim \
+    && ln -s $script_path/vim $CONFIG_PATH/vim \
+    && mkdir -p $CONFIG_PATH/vim/plugged
+printf "so $CONFIG_PATH/vim/vimrc" > ~/.vimrc
+[ ! -d $CONFIG_PATH/tmux ] \
+    && echo Creating symbolic link: ln -s $script_path/tmux $CONFIG_PATH/tmux \
+    && ln -s $script_path/tmux $CONFIG_PATH/tmux
+printf "source-file $CONFIG_PATH/tmux/tmux.conf" > ~/.tmux.conf
 
