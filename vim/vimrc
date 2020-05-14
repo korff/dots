@@ -6,13 +6,20 @@
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
 
-if empty(glob('$HOME/.config/vim/autoload/plug.vim'))
-    silent !curl -fLo $HOME/.config/vim/autoload/plug.vim --create-dirs
+if empty(glob('$HOME/.vim/autoload/plug.vim'))
+    silent !curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('$HOME/.config/vim/plugged')
+
+" Gruvbox colorscheme
+Plug 'morhetz/gruvbox'
+
+" Fuzzy finding
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " CtrlP fuzzy file search
 Plug 'ctrlpvim/ctrlp.vim'
@@ -52,6 +59,12 @@ Plug 'tpope/vim-endwise'
 
 " detect indent style (tabs vs. spaces) 
 Plug 'tpope/vim-sleuth'
+
+" Multiple cursor edits
+Plug 'terryma/vim-multiple-cursors'
+
+" Markdown preview
+" Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
@@ -171,6 +184,7 @@ endif
 
 " Set directory for where to put swap files
 set dir=/tmp/
+set viminfo+=n$HOME/.config/vim/viminfo
 
 " Searching for files
 set path+=**

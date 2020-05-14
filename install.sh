@@ -3,7 +3,7 @@
 set -e
 set -u
 
-script_path="$( cd "$( dirname "${BASH_SOURCE}" )" && pwd )"
+script_path="$( cd "$( dirname $0 )" && pwd )"
 
 install_package() {
     echo -n "$1 is missing. Want to install? (y/n) " >&2
@@ -78,10 +78,9 @@ echo Update dot and config files && answer
 CONFIG_PATH=$HOME/.config
 [ ! -d $CONFIG_PATH ] && mkdir -p $CONFIG_PATH
 [ ! -d $CONFIG_PATH/vim ] \
-    && echo Creating symbolic link: ln -s $script_path/vim $CONFIG_PATH/vim \
-    && ln -s $script_path/vim $CONFIG_PATH/vim \
+    && echo mkdir -p $CONFIG_PATH/vim/plugged \
     && mkdir -p $CONFIG_PATH/vim/plugged
-printf "so $CONFIG_PATH/vim/vimrc" > ~/.vimrc
+# printf "so $CONFIG_PATH/vim/vimrc" > ~/.vimrc
 [ ! -d $CONFIG_PATH/tmux ] \
     && echo Creating symbolic link: ln -s $script_path/tmux $CONFIG_PATH/tmux \
     && ln -s $script_path/tmux $CONFIG_PATH/tmux
