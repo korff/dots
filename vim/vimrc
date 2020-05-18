@@ -1,6 +1,4 @@
 "
-" Features 
-"
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -20,9 +18,10 @@ Plug 'morhetz/gruvbox'
 " Fuzzy finding
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 
 " CtrlP fuzzy file search
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 
 " The sensible settings
 Plug 'tpope/vim-sensible'
@@ -192,7 +191,7 @@ set path+=**
 "
 " Spelling options
 "
-" On merkdown files
+" On markdown files
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 " On git commits
@@ -244,6 +243,11 @@ nnoremap <leader>t :tabnew<CR>:Ex<CR>
 nnoremap <leader>v :vsplit<CR>
 " Horizontal split
 nnoremap <leader>s :split<CR>
+
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffer<CR>
+nnoremap <leader>a :Ag<CR>
+nnoremap <leader>r :Rg<CR>
 
 " Remap ; to : in normal mode
 nnoremap ; :

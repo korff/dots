@@ -21,7 +21,7 @@ install_package() {
         # macOS, ...
         elif [ -x "$(command -v brew)" ]
         then
-        brew install $1
+            brew install $1
 
         # RHEL, CentOS, ...
         elif [ -x "$(command -v yum)" ]
@@ -66,12 +66,20 @@ answer() {
 echo Setting up terminal envirionment && answer
 
 # The packages
+check_package zsh
+echo
 check_package ctags
 echo
 check_package vim
 echo
 check_package tmux
 echo
+check_package fzf
+echo
+# check_package rg
+# echo
+# check_package ag
+# echo
 
 # Hook up the config files
 echo Update dot and config files && answer
@@ -84,5 +92,8 @@ CONFIG_PATH=$HOME/.config
 [ ! -d $CONFIG_PATH/tmux ] \
     && echo Creating symbolic link: ln -s $script_path/tmux $CONFIG_PATH/tmux \
     && ln -s $script_path/tmux $CONFIG_PATH/tmux
-printf "source-file $CONFIG_PATH/tmux/tmux.conf" > ~/.tmux.conf
+printf "source-file $CONFIG_PATH/tmux/tmux.conf" > $HOME/.tmux.conf
+echo
+printf "source $script_path/zsh/zshrc" > $HOME/.zshrc
+printf "source $script_path/zsh/zshenv" > $HOME/.zshenv
 
