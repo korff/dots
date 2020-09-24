@@ -20,14 +20,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 
-" CtrlP fuzzy file search
-" Plug 'ctrlpvim/ctrlp.vim'
-
 " The sensible settings
 Plug 'tpope/vim-sensible'
-
-" substitute, search, and abbreviate multiple variants of a word
-Plug 'tpope/vim-abolish'
 
 " easy commenting motions
 Plug 'tpope/vim-commentary'
@@ -35,50 +29,29 @@ Plug 'tpope/vim-commentary'
 " mappings which are simply short normal mode aliases for commonly used ex commands
 Plug 'tpope/vim-unimpaired'
 
-" endings for html, xml, etc. - ehances surround
-Plug 'tpope/vim-ragtag'
-
 " mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
 Plug 'tpope/vim-surround'
-
-" tmux integration for vim
-Plug 'benmills/vimux'
 
 " enables repeating other supported plugins with the . command
 Plug 'tpope/vim-repeat'
 
-" .editorconfig support 
-Plug 'editorconfig/editorconfig-vim'
-
-" single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
-Plug 'AndrewRadev/splitjoin.vim'
-
-" add end, endif, etc. automatically
-Plug 'tpope/vim-endwise'
-
-" detect indent style (tabs vs. spaces) 
-Plug 'tpope/vim-sleuth'
-
 " Multiple cursor edits
 Plug 'terryma/vim-multiple-cursors'
-
-" Markdown preview
-" Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
 filetype indent plugin on
- 
+
 " Enable syntax highlighting
 syntax on
 
 " Set , as new mapleader
 let mapleader=","
- 
+
 "
-" Must have options 
+" Must have options
 "
 
 " The 'hidden' option, which allows you to re-use the same
@@ -90,10 +63,10 @@ let mapleader=","
 " try to quit without saving, and swap files will keep you safe if your computer
 " crashes.
 set hidden
- 
+
 " Better command-line completion
 set wildmenu
- 
+
 " Show partial commands in the last line of the screen
 set showcmd
 
@@ -108,30 +81,30 @@ set hlsearch
 
 " Incremental search. Highlights as search is typed
 set incsearch
- 
+
 " Modelines have historically been a source of security vulnerabilities.
 set nomodeline
- 
+
 "
-" Usability options 
+" Usability options
 "
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
- 
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
- 
+
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
- 
+
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
- 
+
 " Highlight at column 132
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%133v', 100)
@@ -139,18 +112,18 @@ call matchadd('ColorColumn', '\%133v', 100)
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
- 
+
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
- 
+
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
 " is unset, this does nothing.
 set t_vb=
- 
+
 " Enable use of the mouse for all modes
 set mouse=a
- 
+
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
@@ -251,6 +224,9 @@ nnoremap <leader>r :Rg<CR>
 
 " Remap ; to : in normal mode
 nnoremap ; :
+
+set tags+=.git/tags
+set notagrelative
 
 " Moving lines up and down
 " nnoremap <A-j> :m .+1<CR>==
