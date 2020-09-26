@@ -180,6 +180,7 @@ hi SpellBad cterm=undercurl ctermfg=red
 "
 
 autocmd BufRead,BufNewFile dockerfile set ft=Dockerfile
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 
 "
