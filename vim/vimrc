@@ -210,8 +210,6 @@ nnoremap vv 0v$
 
 " Show current folder
 nnoremap <leader>e :Ex<CR>
-" Create new tab
-nnoremap <leader>t :tabnew<CR>:Ex<CR>
 " Vertical split
 nnoremap <leader>v :vsplit<CR>
 " Horizontal split
@@ -219,8 +217,7 @@ nnoremap <leader>s :split<CR>
 
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffer<CR>
-nnoremap <leader>a :Ag<CR>
-nnoremap <leader>r :Rg<CR>
+nnoremap <leader>t :Tags<CR>
 
 " Remap ; to : in normal mode
 nnoremap ; :
