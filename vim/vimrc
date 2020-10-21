@@ -46,8 +46,8 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
 
-" Set , as new mapleader
-let mapleader=","
+" Set space as new mapleader
+let mapleader=" "
 
 "
 " Must have options
@@ -127,13 +127,15 @@ set mouse=a
 " "press <Enter> to continue"
 set cmdheight=2
 
+" Sane splitting defaults
+set splitbelow splitright
+
 "
 " Visualization
 "
 
 " Display line numbers on the left
-set number
-set relativenumber
+set number relativenumber
 
 " Display whitespace characters that should not be there
 set list
@@ -208,19 +210,35 @@ nnoremap <C-L> :nohl<CR><C-L>
 " Visual select line similar to yy, dd, and cc
 nnoremap vv 0v$
 
-" Show current folder
-nnoremap <leader>e :Ex<CR>
+" Show current folder as sidebar
+nnoremap <leader>e :Lex <bar> :vertical resize 50<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
 " Vertical split
 nnoremap <leader>v :vsplit<CR>
 " Horizontal split
 nnoremap <leader>s :split<CR>
 
+" fzf mappings
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffer<CR>
 nnoremap <leader>t :Tags<CR>
 
 " Remap ; to : in normal mode
 nnoremap ; :
+
+" Open file under curser in new tab
+nnoremap <leader>gf <c-w>gf<CR>
+
+" Open terminal vsplit
+nnoremap <leader>gt :vert term<CR>
+
+" Line moving maps
+nnoremap <C-k> :m -2<CR>
+nnoremap <C-j> :m +1<CR>
 
 set tags+=.git/tags
 set notagrelative
