@@ -34,7 +34,17 @@ Plug 'tpope/vim-repeat'
 " Multiple cursor edits
 Plug 'terryma/vim-multiple-cursors'
 
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
 call plug#end()
+
+" let g:deoplete#enable_at_startup = 1
 
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
@@ -42,6 +52,11 @@ filetype indent plugin on
 
 " Enable syntax highlighting
 syntax on
+
+" C++ no indention on namespaces
+set cino+=N-s
+" C++ remove indent from public/private keyword
+set cino+=g-s
 
 " Set space as new mapleader
 let mapleader=" "
@@ -238,8 +253,10 @@ nnoremap <leader>gt :vert term<CR>
 nnoremap <C-k> :m -2<CR>
 nnoremap <C-j> :m +1<CR>
 
-set tags+=.git/tags
-set notagrelative
+" Ctags and tags related settings
+" au BufWritePost *.c,*.cpp,*.h silent! !ctags -R --extra="+f" -f .git/tags . &
+" set tags+=.git/tags
+" set notagrelative
 
 " Moving lines up and down
 " nnoremap <A-j> :m .+1<CR>==
