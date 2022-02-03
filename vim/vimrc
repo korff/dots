@@ -15,6 +15,12 @@ call plug#begin('$HOME/.config/vim/plugged')
 " Gruvbox colorscheme
 Plug 'morhetz/gruvbox'
 
+" Pretty status bar
+Plug 'vim-airline/vim-airline'
+
+" Language packs
+Plug 'sheerun/vim-polyglot'
+
 " Fuzzy finding
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -33,6 +39,9 @@ Plug 'tpope/vim-repeat'
 
 " Multiple cursor edits
 Plug 'terryma/vim-multiple-cursors'
+
+" Auto completions
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -95,7 +104,8 @@ set hlsearch
 set incsearch
 
 " Modelines have historically been a source of security vulnerabilities.
-set nomodeline
+" set nomodeline
+set noshowmode
 
 "
 " Usability options
@@ -249,33 +259,31 @@ nnoremap <leader>gf <c-w>gf<CR>
 " Open terminal vsplit
 nnoremap <leader>gt :vert term<CR>
 
-" Line moving maps
-nnoremap <C-k> :m -2<CR>
-nnoremap <C-j> :m +1<CR>
-
 " Ctags and tags related settings
 " au BufWritePost *.c,*.cpp,*.h silent! !ctags -R --extra="+f" -f .git/tags . &
 " set tags+=.git/tags
 " set notagrelative
 
 " Moving lines up and down
-" nnoremap <A-j> :m .+1<CR>==
-" nnoremap <A-k> :m .-2<CR>==
-" inoremap <A-j> <Esc>:m .+1<CR>==gi
-" inoremap <A-k> <Esc>:m .-2<CR>==gi
-" vnoremap <A-j> :m '>+1<CR>gv=gv
-" vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
-set statusline=
-" set statusline+=%{StatuslineGit()}
-set statusline+=%#StatusLine#
-set statusline+=\ %f
-set statusline+=%m
-" Align right from here
-set statusline+=%=
-set statusline+=\ %y
-set statusline+=\ %l:%c
-set statusline+=\ %p%%
-set statusline+=\ 
+" set statusline=
+" " set statusline+=%{StatuslineGit()}
+" set statusline+=%#StatusLine#
+" set statusline+=\ %f
+" set statusline+=%m
+" " Align right from here
+" set statusline+=%=
+" set statusline+=\ %y
+" set statusline+=\ %l:%c
+" set statusline+=\ %p%%
+" set statusline+=\ 
+
+colorscheme gruvbox
 
 " EOF
