@@ -259,6 +259,8 @@ nnoremap <leader>gf <c-w>gf<CR>
 " Open terminal vsplit
 nnoremap <leader>gt :vert term<CR>
 
+nnoremap <leader>rg :Rg <C-r><C-w><CR>
+
 " Ctags and tags related settings
 " au BufWritePost *.c,*.cpp,*.h silent! !ctags -R --extra="+f" -f .git/tags . &
 " set tags+=.git/tags
@@ -283,7 +285,5 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 " set statusline+=\ %l:%c
 " set statusline+=\ %p%%
 " set statusline+=\ 
-
-colorscheme gruvbox
 
 " EOF
