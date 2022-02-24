@@ -16,7 +16,7 @@ call plug#begin('$HOME/.config/vim/plugged')
 Plug 'morhetz/gruvbox'
 
 " Pretty status bar
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 
 " Language packs
 Plug 'sheerun/vim-polyglot'
@@ -50,6 +50,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "   Plug 'roxma/nvim-yarp'
 "   Plug 'roxma/vim-hug-neovim-rpc'
 " endif
+
+" Better C++ highlighting
+Plug 'bfrg/vim-cpp-modern'
 
 call plug#end()
 
@@ -285,5 +288,13 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 " set statusline+=\ %l:%c
 " set statusline+=\ %p%%
 " set statusline+=\ 
+
+" Color scheme setup
+set background=dark
+
+let g:gruvbox_vert_split='bg1'
+colorscheme gruvbox
+
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 " EOF
