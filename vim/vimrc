@@ -54,6 +54,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Better C++ highlighting
 Plug 'bfrg/vim-cpp-modern'
 
+Plug 'preservim/tagbar'
+
+Plug 'ludovicchabant/vim-gutentags'
+
 call plug#end()
 
 " let g:deoplete#enable_at_startup = 1
